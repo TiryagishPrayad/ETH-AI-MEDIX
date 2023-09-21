@@ -91,6 +91,7 @@ const Feedback = ({ contract, account, userName }) => {
         contract.off("FeedbackProvided", handleFeedbackProvided);
       }
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps  
   }, [contract, inputAddress]);
 
   const handleAddressChange = (e) => {
