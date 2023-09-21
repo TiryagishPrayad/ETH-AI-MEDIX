@@ -56,9 +56,10 @@ const Display = ({ contract, account }) => {
   };
 
   useEffect(() => {
-    getDiseasePredictions(account); // Include 'account' as a dependency
+    getDiseasePredictions(account); 
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account]);
-
+  
   const handleGetDiseasePredictions = () => {
     const address = document.querySelector(".address").value;
     getDiseasePredictions(address );
