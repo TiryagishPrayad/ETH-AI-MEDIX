@@ -7,7 +7,6 @@ import Display from "./components/Display";
 import Modal from "./components/Modal";
 import Header from "./components/header";
 import Feedback from "./components/Feedback";
-import axios from "axios";
 import "./App.css";
 import Disease from "./components/dise";
 
@@ -18,9 +17,7 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [uploadedRecords, setUploadedRecords] = useState([]);
   const [userName, setUserName] = useState("");
-  const [inputA, setInputA] = useState("");
-  const [inputB, setInputB] = useState("");
-  const [resultFromPython, setResultFromPython] = useState("");
+ 
 
   useEffect(() => {
     const loadProvider = async () => {
@@ -39,7 +36,7 @@ function App() {
           const signer = provider.getSigner();
           const address = await signer.getAddress();
           setAccount(address);
-          const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+          const contractAddress = "0xe16327B5b3C2eC95310ADa1CED9828e451f356c0";
           const contract = new ethers.Contract(
             contractAddress,
             Upload.abi,
