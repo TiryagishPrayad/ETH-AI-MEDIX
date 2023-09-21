@@ -13,6 +13,6 @@ module.exports = {
     },
   },
   paths: {
-    artifacts: "./web4/src/artifacts",
+    artifacts: "./web5/src/artifacts",
   },
 };
