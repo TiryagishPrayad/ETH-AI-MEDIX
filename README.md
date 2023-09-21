@@ -59,6 +59,3 @@ Getting  Started
 
 
    - Update the contract address and ABI in the `App.js` file to match your deployed smart contract.
-# ETHMEDIXFINAL
-# ETHMEDIXFINAL
-# ETHMEDIXFINAL
