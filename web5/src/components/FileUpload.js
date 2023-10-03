@@ -5,6 +5,7 @@ import "./FileUpload.css";
 const FileUpload = ({ contract, account, provider, goBack }) => {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("No patient record Selected");
+  const [uploadSuccess, setUploadSuccess] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +27,7 @@ const FileUpload = ({ contract, account, provider, goBack }) => {
 
         const ImgHash = `https://gateway.pinata.cloud/ipfs/${resFile.data.IpfsHash}`;
         contract.add(ImgHash);
-
+        setUploadSuccess(true);
         alert("Successfully Image Uploaded");
         setFileName("No Patient Record  Selected");
         setFile(null);
@@ -38,6 +39,7 @@ const FileUpload = ({ contract, account, provider, goBack }) => {
     alert("Successfully Image Uploaded");
     setFileName(" No Patient Record Selected");
     setFile(null);
+    setUploadSuccess(true);
   };
 
   const retrieveFile = (e) => {
@@ -70,7 +72,15 @@ const FileUpload = ({ contract, account, provider, goBack }) => {
             Upload Patient Record 
           </button>
           
+        {uploadSuccess && (
+          <div className="upload-success-message">
+            <div>
+           <p>Your records are successfully uploaded</p>
+           </div>
+          </div>
+        )}
         </div>
+
       </form>
     </div>
   );

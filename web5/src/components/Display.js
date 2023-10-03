@@ -43,7 +43,7 @@ const Display = ({ contract, account }) => {
 
   const getDiseasePredictions = async (address) => {
     try {
-      const [decision_tree, random_forest, naive_bayes] = await contract.getDiseasePredictions(address || account );
+      const [decision_tree, random_forest, naive_bayes] = await contract.getDiseasePredictions(address   );
       setDiseasePredictions({
         decision_tree,
         random_forest,
@@ -55,10 +55,11 @@ const Display = ({ contract, account }) => {
     }
   };
 
-  useEffect(() => {
-    getDiseasePredictions(account); // Include 'account' as a dependency
-  }, [account]);
-
+  // useEffect(() => {
+  //   getDiseasePredictions(account); 
+  //    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [account]);
+  
   const handleGetDiseasePredictions = () => {
     const address = document.querySelector(".address").value;
     getDiseasePredictions(address );

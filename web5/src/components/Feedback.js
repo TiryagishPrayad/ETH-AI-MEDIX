@@ -91,6 +91,7 @@ const Feedback = ({ contract, account, userName }) => {
         contract.off("FeedbackProvided", handleFeedbackProvided);
       }
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps  
   }, [contract, inputAddress]);
 
   const handleAddressChange = (e) => {
@@ -148,10 +149,10 @@ const Feedback = ({ contract, account, userName }) => {
         {submittedFeedback.length > 0 ? (
           submittedFeedback.map((feedback, index) => (
             <div key={index} className="feedback-item">
-              <p>User: {feedback.user}</p>
-              <p>User Name: {feedback.username}</p>
-              <p>Record: {feedback.record}</p>
-              <p>Feedback: {feedback.feedback}</p>
+              <p>Address: {feedback.user}</p>
+              <p>Name: {feedback.username}</p>
+              <p> Patient Record: {feedback.record}</p>
+              <p> Feedback: {feedback.feedback}</p>
             </div>
           ))
         ) : (

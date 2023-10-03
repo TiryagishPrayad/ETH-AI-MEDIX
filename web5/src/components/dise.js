@@ -100,13 +100,13 @@ function DiseasePredictor({ contract, account }) {
 
       <br />
       <button onClick={predictDisease}>Predict Disease</button>
-      <p>
+      {/* <p>
         Decision Tree: {results.decision_tree_disease}
         <br />
         Random Forest: {results.random_forest_disease}
         <br />
         Naive Bayes: {results.naive_bayes_disease}
-      </p>
+      </p> */}
     </div>
   );
 }

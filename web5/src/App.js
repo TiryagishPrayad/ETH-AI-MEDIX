@@ -7,7 +7,6 @@ import Display from "./components/Display";
 import Modal from "./components/Modal";
 import Header from "./components/header";
 import Feedback from "./components/Feedback";
-import axios from "axios";
 import "./App.css";
 import Disease from "./components/dise";
 
@@ -17,10 +16,10 @@ function App() {
   const [provider, setProvider] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [uploadedRecords, setUploadedRecords] = useState([]);
-  const [userName, setUserName] = useState("");
-  const [inputA, setInputA] = useState("");
-  const [inputB, setInputB] = useState("");
-  const [resultFromPython, setResultFromPython] = useState("");
+  const [userName, setUserName] = useState("");           
+  const [isNameSet, setIsNameSet] = useState(false); 
+
+ 
 
   useEffect(() => {
     const loadProvider = async () => {
@@ -51,6 +50,7 @@ function App() {
           const name = await contract.getName(address);
           if (name) {
             setUserName(name);
+            setIsNameSet(true); 
           }
         } else {
           console.error("Metamask is not installed");
@@ -140,33 +140,31 @@ function App() {
 
       <div className="App">
         <Header />
+        {/* Display the username and account address */}
+        <div>
+        <div>
+  <p>Username: {userName}</p>
+  <p>Account Address: {account}</p>
+</div>
 
-        <input
-          type="text"
-          placeholder="Your Name"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-        />
-        <button onClick={() => contract.setName(userName)}>Set Name</button>
-        {/* <div className="resultFromPython">
-          Result from Python: {resultFromPython}
+          {!isNameSet ? (
+            <div>
+              <input
+                type="text"
+                placeholder="Your Name"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+              />
+              <button onClick={() => {
+                contract.setName(userName);
+                setIsNameSet(true); // Set isNameSet to true after setting the name
+              }}>
+                Set Name
+              </button>
+            </div>
+          ) : null}
         </div>
-        <div className="inputFields">
-          <input
-            type="text"
-            placeholder="Enter 'a'"
-            value={inputA}
-            onChange={(e) => setInputA(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Enter 'b'"
-            value={inputB}
-            onChange={(e) => setInputB(e.target.value)}
-          />
-          <button onClick={handleSubmit}>Submit</button>
-        </div> */}
-
+        {/* Routes */}
         <Routes>
           <Route
             path="/"
@@ -187,15 +185,12 @@ function App() {
                 uploadedRecords={uploadedRecords}
                 userName={userName}
               />
-                     
-              
             }
           />
           <Route
-                       path="/disease" 
-                       element={<Disease contract={contract} account={account} />
-                      } />
-
+            path="/disease"
+            element={<Disease contract={contract} account={account} />}
+          />
         </Routes>
       </div>
     </Router>
@@ -203,3 +198,5 @@ function App() {
 }
 
 export default App;
+
+

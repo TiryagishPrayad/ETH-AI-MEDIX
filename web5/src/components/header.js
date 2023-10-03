@@ -8,9 +8,7 @@ const Header = () => {
   const [account, setAccount] = useState("");
   const [copySuccess, setCopySuccess] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [resultFromPython, setResultFromPython] = useState(""); // State to store the result
-  const [inputA, setInputA] = useState(""); // State to store input 'a'
-  const [inputB, setInputB] = useState(""); // State to store input 'b'
+ 
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -53,49 +51,14 @@ const Header = () => {
     copyToClipboard();
   };
 
-  // Function to send parameters to Python and receive the result
-  const sendParametersToPython = async (a, b) => {
-    try {
-      const response = await fetch('/calculate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ a, b }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
-      // Now 'data' contains the result from the Python script
-      setResultFromPython(data.result);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
-  const handleSubmit = () => {
-    // Convert inputA and inputB to numbers (assuming they should be numbers)
-    const a = parseFloat(inputA);
-    const b = parseFloat(inputB);
-
-    if (!isNaN(a) && !isNaN(b)) {
-      // Call the 'sendParametersToPython' function with 'a' and 'b'
-      sendParametersToPython(a, b);
-    } else {
-      // Handle invalid input
-      console.error("Invalid input for 'a' and/or 'b'");
-    }
-  };
+ 
 
   return (
     <div className="wrapper">
       <Link to="http://localhost:3000">
         <div className="logoContainer">
           <img src={logo} alt="Ethmedix" height={80} width={80} />
-          <div className="logoText">Ethmedix</div>
+          <div className="logoText">EthAImedix</div>
         </div>
       </Link>
 

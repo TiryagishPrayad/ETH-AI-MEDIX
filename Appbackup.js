@@ -163,8 +163,15 @@ function App() {
                 uploadedRecords={uploadedRecords}
                 userName={userName}
               />
+                     
+              
             }
           />
+          <Route
+                       path="/disease" 
+                       element={<Disease contract={contract} account={account} />
+                      } />
+
         </Routes>
       </div>
     </Router>

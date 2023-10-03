@@ -38,7 +38,7 @@ disease_list = ['Fungal infection', 'Allergy', 'GERD', 'Chronic cholestasis', 'D
            'Urinary tract infection', 'Psoriasis', 'Impetigo']
 
 
-df = pd.read_csv("/Users/tiryagishprayad/Pictures/dis3.2/Dise/Training.csv")
+df = pd.read_csv("/Users/tiryagishprayad/Pictures/finalproject/Dise/Training.csv")
  
 
 X = df[l1].values
