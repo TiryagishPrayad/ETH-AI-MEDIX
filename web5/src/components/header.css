@@ -1,12 +1,16 @@
 .wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(45deg, #c33192, #00fff3);
+  align-items: right;
+  background: linear-gradient(45deg, #ad196f,#de7c52,#f4a804);
   padding: 10px;
-  color: #bab5b5;
+  color: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   gap: 10px;
+  text-align: center;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
 }
 
 .logoContainer {
@@ -22,8 +26,17 @@
 
 .logoText {
   margin-left: 8px;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 30px;
+  font-weight:bolder;
+  font-family: 'Times New Roman', Times, serif;
+  text-decoration-line: underline;
+  box-sizing: border-box;
+  display: inline-block;
+  margin-top: 8px;
+  position: relative;
+  vertical-align: top;
+  white-space: normal;
+  color: #fafa05;
 }
 
 .dropdownContainer {
@@ -31,52 +44,141 @@
 }
 
 .dropdownToggle {
-  cursor: pointer;
+  margin: 20px;
+  padding: 13px;
+  position: relative;
+  right: 120px;
+  background: #4abddd;
+  font-weight: bold;
+  width: 100px;
+  height: 20px;
+  border-radius: 4px;
+  top: -1px;
+  color:white;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+  text-align: center;
+  flex-direction: column;
+  align-items: flex-start;
+  border:0px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+  
 }
 
 .dropdownContent {
   position: absolute;
   top: 100%;
-  right: 0;
-  background-color: #f3eaea;
-  border: 1px solid #f4eeee;
-  padding: 10px;
-  min-width: 120px;
+  right: 115px;
+  color: #0d0d0d;
+  background-color: #a2a8d3;
+  border: 0px solid #111010;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 5px;
+  min-width: 50px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: 'Times New Roman', Times, serif ;
+
 }
 
 .accountText {
   margin-bottom: 5px;
   cursor: pointer;
-}
-
-.copyField {
-  margin-bottom: 5px;
-  padding: 5px;
-  border: 1px solid #fcfbfb;
-  border-radius: 4px;
-  background-color: #fefafa;
-  cursor: pointer;
-}
-
-.copyField:hover {
-  background-color: #e54949;
+  color:white;
+  font-size: 25px;
+  
+  
 }
 
 .copySuccessMessage {
   margin-bottom: 5px;
-  color: green;
+  color: rgb(43, 79, 15);
 }
 
 .dropdownLink {
-  color: #000;
+  color:white;
   text-decoration: none;
   margin-top: 5px;
+  font-size: 20px;
 }
 
 .dropdownLink:hover {
   text-decoration: underline;
 }
+
+.logoText:hover {
+  color: #fafa05;
+}
+
+.sidhu{
+  color:white;
+}
+
+
+/* .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(45deg, #c33192, #00fff3);
+    padding: 10px;
+    color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    gap: 10px;
+  }
+  
+  .logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Horizontally center the text */
+  /* align-items: cente
+  }
+  
+  .logoContainer img {
+    height: 40px;
+    width: 40px;
+    animation: rotateLogo 2s linear infinite;
+  }
+  
+  .logoText {
+    margin-left: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    align-items: center;
+  }
+  
+  .headerItem {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    animation: fadeIn 1s ease-in-out;
+    margin-right: 25px;
+  }
+  
+  .headerItem:hover {
+    color: #c8cacd;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .headerItem:first-child {
+    margin-left: 18px;
+  }
+  
+
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+   */ 

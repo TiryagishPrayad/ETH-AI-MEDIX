@@ -1,59 +1,66 @@
+import React from 'react';
+import useAddressInput from './useAddressInput';
+import './Modal.css';
 
-import { useEffect } from "react";
-import "./Modal.css";
 const Modal = ({ setModalOpen, contract }) => {
+  const { query, handleInputChange, suggestions, selectedOption, handleOptionClick } = useAddressInput(contract);
+
   const sharing = async () => {
-    const address = document.querySelector(".address").value;
+    const address = document.querySelector('.account-number-input').value;
     await contract.allow(address);
     setModalOpen(false);
   };
-  useEffect(() => {
-    const accessList = async () => {
-      const addressList = await contract.shareAccess();
-      let select = document.querySelector("#selectNumber");
-      const options = addressList;
 
-      for (let i = 0; i < options.length; i++) {
-        let opt = options[i];
-        let e1 = document.createElement("option");
-        e1.textContent = opt;
-        e1.value = opt;
-        select.appendChild(e1);
-      }
-    };
-    contract && accessList();
-  }, [contract]);
   return (
     <>
       <div className="modalBackground">
         <div className="modalContainer">
-          <div className="title">Paste The Address </div>
+          <div className="title titleCloseBtn">
+            <span>Paste The Address</span>
+            <button onClick={() => setModalOpen(false)}>X</button>
+          </div>
           <div className="body">
+            {/* Input for account numbers */}
             <input
               type="text"
-              className="address"
-              placeholder="Enter Address"
-            ></input>
+              className="account-number-input"
+              value={query}
+              onChange={handleInputChange}
+              placeholder="Enter Account Name"
+            />
+            {/* Display account number suggestions */}
+            {query && (
+              <ul className="suggestions-list">
+                {suggestions.map((option, index) => (
+                  <li key={index} onClick={() => handleOptionClick(option)}>
+                    {option}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
           <form id="myForm">
+            {/* List box for people with access */}
             <select id="selectNumber">
               <option className="address">People With Access</option>
             </select>
           </form>
           <div className="footer">
             <button
-              onClick={() => {
-                setModalOpen(false);
-              }}
+              onClick={() => setModalOpen(false)}
               id="cancelBtn"
+              className="button"
             >
               Cancel
             </button>
-            <button onClick={() => sharing()}>Share</button>
+            <button onClick={() => sharing()} className="button">
+              Share
+            </button>
           </div>
         </div>
       </div>
     </>
   );
 };
+
 export default Modal;

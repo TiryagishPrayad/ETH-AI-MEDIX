@@ -16,10 +16,8 @@ function App() {
   const [provider, setProvider] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [uploadedRecords, setUploadedRecords] = useState([]);
-  const [userName, setUserName] = useState("");           
-  const [isNameSet, setIsNameSet] = useState(false); 
-
- 
+  const [userName, setUserName] = useState("");
+  const [isNameSet, setIsNameSet] = useState(false);
 
   useEffect(() => {
     const loadProvider = async () => {
@@ -38,19 +36,15 @@ function App() {
           const signer = provider.getSigner();
           const address = await signer.getAddress();
           setAccount(address);
-          const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
-          const contract = new ethers.Contract(
-            contractAddress,
-            Upload.abi,
-            signer
-          );
+          const contractAddress = "0x6eeF5dF1eB00bC8927A33899Df039FcF63014dAD";
+          const contract = new ethers.Contract(contractAddress, Upload.abi, signer);
           setContract(contract);
           setProvider(provider);
           fetchUploadedRecords(contract, address);
           const name = await contract.getName(address);
           if (name) {
             setUserName(name);
-            setIsNameSet(true); 
+            setIsNameSet(true);
           }
         } else {
           console.error("Metamask is not installed");
@@ -72,63 +66,6 @@ function App() {
     }
   };
 
-  // const sendParametersToPython = async (a, b) => {
-  //   try {
-  //     const response = await axios.post('http://localhost:5001/', {
-  //       a: a,
-  //       b: b,
-  //     });
-
-  //     if (response.status === 200) {
-  //       const data = response.data;
-  //       setResultFromPython(data.result);
-  //       return data.result;
-  //     } else {
-  //       console.error('Network response was not ok');
-  //       return null;
-  //     }
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //     return null;
-  //   }
-  // };
-
-  // const setPythonResultOnContract = async (result) => {
-  //   try {
-  //     const signer = provider.getSigner();
-  //     const contractWithSigner = contract.connect(signer);
-  //     const tx = await contractWithSigner.setPythonResult(result);
-  //     await tx.wait();
-  //     console.log("Python result stored on the smart contract");
-  //   } catch (error) {
-  //     console.error("Error setting Python result:", error);
-  //   }
-  // };
-
-  // const handleSubmit = async () => {
-  //   const a = parseFloat(inputA);
-  //   const b = parseFloat(inputB);
-
-  //   if (!isNaN(a) && !isNaN(b)) {
-  //     try {
-        
-  //       const pythonResult = await sendParametersToPython(a, b);
-
-  //       if (pythonResult !== null) {
-          
-  //         setResultFromPython(pythonResult);
-
-         
-  //         await setPythonResultOnContract(pythonResult);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error sending parameters to Python:", error);
-  //     }
-  //   } else {
-  //     console.error("Invalid input for 'a' and/or 'b'");
-  //   }
-  // };
-
   return (
     <Router>
       {!modalOpen && (
@@ -140,12 +77,11 @@ function App() {
 
       <div className="App">
         <Header />
-        {/* Display the username and account address */}
         <div>
-        <div>
-  <p>Username: {userName}</p>
-  <p>Account Address: {account}</p>
-</div>
+          <div>
+            <p>Username: {userName}</p>
+            <p>Account Address: {account}</p>
+          </div>
 
           {!isNameSet ? (
             <div>
@@ -155,16 +91,33 @@ function App() {
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
               />
-              <button onClick={() => {
-                contract.setName(userName);
-                setIsNameSet(true); // Set isNameSet to true after setting the name
-              }}>
+              <button
+                onClick={() => {
+                  contract.setName(userName);
+                  setIsNameSet(true);
+                }}
+              >
                 Set Name
               </button>
             </div>
           ) : null}
         </div>
-        {/* Routes */}
+
+        {/* <div>
+          <select
+            value={selectedRecipient}
+            onChange={(e) => setSelectedRecipient(e.target.value)}
+          >
+            <option value="">Select Recipient</option>
+            {accountNumbers.map((address) => (
+              <option key={address} value={address}>
+                {address}
+              </option>
+            ))}
+          </select>
+          <button onClick={sendEther}>Send Ether</button>
+        </div> */}
+
         <Routes>
           <Route
             path="/"
@@ -187,10 +140,7 @@ function App() {
               />
             }
           />
-          <Route
-            path="/disease"
-            element={<Disease contract={contract} account={account} />}
-          />
+          <Route path="/disease" element={<Disease contract={contract} account={account} />} />
         </Routes>
       </div>
     </Router>
@@ -198,5 +148,3 @@ function App() {
 }
 
 export default App;
-
-

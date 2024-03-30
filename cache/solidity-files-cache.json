@@ -70,6 +70,41 @@
       "artifacts": [
         "Upload"
       ]
+    },
+    "/Users/tiryagishprayad/Pictures/finalproject/contracts/Upload.sol": {
+      "lastModificationDate": 1708178103994,
+      "contentHash": "93195fe49132e3a4861a091e4c2f770f",
+      "sourceName": "contracts/Upload.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Upload"
+      ]
     }
   }
 }

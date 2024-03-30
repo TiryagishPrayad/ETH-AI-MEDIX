@@ -99,7 +99,7 @@ function DiseasePredictor({ contract, account }) {
       ))}
 
       <br />
-      <button onClick={predictDisease}>Predict Disease</button>
+      <button onClick={predictDisease}>Submit</button>
       {/* <p>
         Decision Tree: {results.decision_tree_disease}
         <br />

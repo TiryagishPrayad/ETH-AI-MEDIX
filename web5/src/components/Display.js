@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import "./Display.css";
+import useAddressInput from './useAddressInput';
 
 const Display = ({ contract, account }) => {
   const [data, setData] = useState("");
+  const { query, handleInputChange, suggestions, handleOptionClick } = useAddressInput(contract);
   const [diseasePredictions, setDiseasePredictions] = useState({
     decision_tree: "",
     random_forest: "",
     naive_bayes: "",
   });
 
-  const fetchData = async (address) => {
+  const fetchData = async (query) => {
     try {
-      const dataArray = await contract.display(address || account);
+      const dataArray = await contract.display(query || account);
       const isEmpty = dataArray.length === 0;
 
       if (!isEmpty) {
@@ -26,7 +28,6 @@ const Display = ({ contract, account }) => {
                 alt="Patient Health Record"
                 className="image-list"
               ></img>
-              <span className="record-text">Patient Health Record</span>
             </a>
           );
         });
@@ -41,9 +42,9 @@ const Display = ({ contract, account }) => {
     }
   };
 
-  const getDiseasePredictions = async (address) => {
+  const getDiseasePredictions = async (query) => {
     try {
-      const [decision_tree, random_forest, naive_bayes] = await contract.getDiseasePredictions(address   );
+      const [decision_tree, random_forest, naive_bayes] = await contract.getDiseasePredictions(query || account);
       setDiseasePredictions({
         decision_tree,
         random_forest,
@@ -56,33 +57,48 @@ const Display = ({ contract, account }) => {
   };
 
   // useEffect(() => {
-  //   getDiseasePredictions(account); 
-  //    // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [account]);
-  
-  const handleGetDiseasePredictions = () => {
-    const address = document.querySelector(".address").value;
-    getDiseasePredictions(address );
-  };
+  //   if (query) {
+  //     fetchData(query);
+  //     getDiseasePredictions(query);
+  //   }
+  // }, [query]);
 
   return (
     <>
-      <input type="text" placeholder="Enter Address" className="address" />
-      <br /><br />
-      <button className="center button" onClick={() => fetchData(document.querySelector(".address").value)}>
+      <input
+        type="text"
+        className="account-dropdown"
+        value={query}
+        onChange={handleInputChange}
+        placeholder="Enter Account Name"
+      />
+      {/* Display account number suggestions */}
+      {query && (
+        <ul className="suggestions-list">
+          {suggestions.map((option, index) => (
+            <li key={index} onClick={() => handleOptionClick(option)}>
+              {option}
+            </li>
+          ))}
+        </ul>
+      )}
+      <br />
+      <br />
+      <button className="center button" onClick={() => fetchData(query)}>
         Get Patient Record
       </button>
-      <button className="center button" onClick={handleGetDiseasePredictions}>
+      <button className="center button" onClick={() => getDiseasePredictions(query)}>
         Get Disease Predictions
       </button>
-      <div className="image-list">{data}</div>
 
+      <div className="image-list">{data}</div>
       {/* Display disease predictions */}
       <div className="disease-predictions">
         <h2>Disease Predictions</h2>
         <p>Decision Tree: {diseasePredictions.decision_tree}</p>
         <p>Random Forest: {diseasePredictions.random_forest}</p>
         <p>Naive Bayes: {diseasePredictions.naive_bayes}</p>
+        
       </div>
     </>
   );

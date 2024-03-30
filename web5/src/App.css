@@ -1,10 +1,8 @@
-
-
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background-image: url("./components/assets/abstract-digital-grid-black-background_53876-97647.avif");
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #fff;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -53,16 +51,18 @@ nav li button:hover {
 }
 .share {
   position: fixed;
-  top: 90px;
+  top: 29px;
   right: 9px;
-  padding: 20px;
-  background: #f44336;
-  width: 100px;
-  height: 35px;
+  padding: 15px;
+  background:  #02b917;
+  width: 120px;
+  height: 45px;
   color: white;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
   border: none;
   border-radius: 4px;
-  font-size: 13px;
+  font-size: 25px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   z-index: 1;
 }
@@ -70,4 +70,26 @@ nav li button:hover {
 .share:hover {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Text{
+  display: block;
+  margin: auto;
+  height: 30px;
+  width: 330px;
+  text-align: center;
+}
+
+input[type="text"]:focus {
+  background-color: lightblue;
+}
+
+.sidhuuu{
+  text-align: center;
+  font-size: 25px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.sidhu1{
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
 }

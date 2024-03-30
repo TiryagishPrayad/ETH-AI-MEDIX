@@ -53,12 +53,16 @@ Getting  Started
      npx hardhat node
      
 
-   - Deploy the smart contracts:
+   - Deploy the smart contracts: in another terminal
 
      npx hardhat run --network localhost scripts/deploy.js
 
 
    - Update the contract address and ABI in the `App.js` file to match your deployed smart contract.
-# ETHMEDIXFINAL
-# ETHMEDIXFINAL
-# ETHMEDIXFINAL
+
+Then following commands  in another terminal
+cd Dise   
+python3 code1234.py    
+Then start the server in another terminal
+cd web5
+npm start
